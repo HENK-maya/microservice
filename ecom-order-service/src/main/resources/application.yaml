@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: ecom-order-service
+server:
+  port: 8080
+
+logging:
+  level:
+    com.hmcode.ecom_order_service.clients: DEBUG
+
