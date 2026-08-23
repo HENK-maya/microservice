@@ -1,6 +1,9 @@
 package com.hmcode.ecom_order_service.clients.config;
 
+import com.hmcode.ecom_order_service.exceptions.CustomeErrorDecoder;
 import feign.*;
+import feign.codec.Encoder;
+import feign.codec.ErrorDecoder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -37,5 +40,17 @@ public class InventoryFeignClientConfig {
         return requestTemplate -> {
             requestTemplate.header("x-Corelation-Id", UUID.randomUUID().toString());
         };
+    }
+
+    //errordecoder
+    @Bean
+    public ErrorDecoder errorDecoder(){
+        return  new CustomeErrorDecoder();
+    }
+
+    //encoder
+    @Bean
+    public Encoder encoder(){
+        return new CustomeInventoryEncoder();
     }
 }
